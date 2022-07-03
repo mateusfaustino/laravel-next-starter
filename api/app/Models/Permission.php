@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Permission;
 
-class Role extends Model
+class Permission extends Model
 {
     use HasFactory;
 
-    public function permissions()
+    public function roles()
     {
         // return $this->belongsToMany(
         // RelatedModel,
@@ -19,14 +17,9 @@ class Role extends Model
         // foreign_key_of_current_model_in_pivot_table, 
         // foreign_key_of_other_model_in_pivot_table);
         return $this->belongsToMany(
-            Permission::class,
+            Role::class,
             'permission_role',
-            'role_id',
-            'permission_id'
-        );
-    }
-    public function users ()
-    {
-        return $this->hasMany(User::class);
+            'permission_id',
+            'role_id');
     }
 }

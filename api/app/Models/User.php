@@ -43,17 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles()
+    public function role()
     {
-        // return $this->belongsToMany(
-        // RelatedModel,
-        // pivot_table_name,
-        // foreign_key_of_current_model_in_pivot_table, 
-        // foreign_key_of_other_model_in_pivot_table);
-        return $this->belongsToMany(
-            Role::class,
-            'roles_users',
-            'user_id',
-            'role_id');
+        return $this->belongsTo(Role::class);
     }
 }
